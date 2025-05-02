@@ -29,8 +29,50 @@
     align-items: flex-start;
 }
 
+.label_input {
+    width: 150px;
+    margin-right: 20px;
+    margin-left: 80px;
+    margin-bottom: 10px;
+}
+
+.timeValue {
+    margin-left: 100px;
+}
+
+.timer {
+    margin-bottom: 10px;
+}
+
+.button_click {
+    margin-bottom: 20px;
+    padding: 5px 20px;
+}
+
 .App-link {
     color: #61dafb;
+}
+
+.gameBoard {
+    margin-top: 20px;
+    border: 2px solid black;
+    position: relative;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.ball {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000000;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    user-select: none;
 }
 
 @keyframes App-logo-spin {

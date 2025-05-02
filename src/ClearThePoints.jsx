@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const containerSize = 800;
+const containerSize = 500;
 const ballSize = 40;
 
 const getRandomPosition = () => {
@@ -98,67 +98,48 @@ const ClearThePoints = () => {
           value={points}
           onChange={(e) => setPoints(Number(e.target.value))}
           min="1"
-          style={{
-            width: "150px",
-            marginRight: "20px",
-            marginLeft: "80px",
-            marginBottom: "10px",
-          }}
+          className="label_input"
         />
       </div>
 
-      <div style={{ marginBottom: "10px" }}>
+      <div className="timer">
         <label>
           Time:
-          <a style={{ marginLeft: "100px",}}>{elapsedTime.toFixed(1)}s</a>
+          <a className="timeValue">{elapsedTime.toFixed(1)}s</a>
         </label>
       </div>
 
       {!isPlaying ? (
-        <button onClick={handlePlay} style={{ marginBottom: "20px", padding :'5px 20px' }}>
+        <button onClick={handlePlay} className="button_click">
           Play
         </button>
       ) : (
-        <button onClick={handleRestart} style={{ marginBottom: "20px", padding :'5px 20px' }}>
+        <button onClick={handleRestart} className="button_click">
           Restart
         </button>
       )}
 
       <div
         style={{
-          marginTop: "20px",
           width: `${containerSize}px`,
           height: `${containerSize}px`,
-          border: "2px solid black",
-          position: "relative",
-          overflow: "hidden",
-          backgroundColor: "#f9f9f9",
         }}
+        className="gameBoard"
       >
         {balls.map((ball) =>
           !ball.cleared ? (
             <div
               key={ball.id}
               onClick={() => handleClickBall(ball.id)}
+              className="ball"
               style={{
-                position: "absolute",
                 top: ball.y - ballSize / 2,
                 left: ball.x - ballSize / 2,
                 width: `${ballSize}px`,
                 height: `${ballSize}px`,
-                borderRadius: "50%",
-                border: "2px solid black",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 backgroundColor: ball.fading ? "red" : "#ffffff",
-                color: "#000000",
-                fontWeight: "bold",
-                fontSize: "18px",
-                cursor: "pointer",
-                userSelect: "none",
-                transition: "opacity 2s ease, background-color 0.3s ease",
                 opacity: ball.fading ? 0 : 1,
+                transition: "opacity 2s ease, background-color 0.3s ease",
                 animation: shakeBallId === ball.id ? "shake 0.5s" : "none",
               }}
             >
@@ -167,22 +148,6 @@ const ClearThePoints = () => {
           ) : null
         )}
       </div>
-
-      <style>{`
-        @keyframes shake {
-          0% { transform: translate(1px, 1px) rotate(0deg); }
-          10% { transform: translate(-1px, -2px) rotate(-1deg); }
-          20% { transform: translate(-3px, 0px) rotate(1deg); }
-          30% { transform: translate(3px, 2px) rotate(0deg); }
-          40% { transform: translate(1px, -1px) rotate(1deg); }
-          50% { transform: translate(-1px, 2px) rotate(-1deg); }
-          60% { transform: translate(-3px, 1px) rotate(0deg); }
-          70% { transform: translate(3px, 1px) rotate(-1deg); }
-          80% { transform: translate(-1px, -1px) rotate(1deg); }
-          90% { transform: translate(1px, 2px) rotate(0deg); }
-          100% { transform: translate(1px, -2px) rotate(-1deg); }
-        }
-      `}</style>
     </div>
   );
 };
